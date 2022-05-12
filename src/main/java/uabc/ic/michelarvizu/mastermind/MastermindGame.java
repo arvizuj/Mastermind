@@ -14,7 +14,7 @@ import uabc.ic.michelarvizu.mastermind.logico.ControlLógico;
  * @author arviz
  */
 public class MastermindGame {
-   
+   //a
     private ControlGráfico controlGráfico;
     private ControlLógico controlLógico;
     private ArrayList <Color> combinación;
