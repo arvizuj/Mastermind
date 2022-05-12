@@ -30,7 +30,12 @@ public class MastermindGame {
         combinaciónSecretaString = new ArrayList();
         controlLógico = new ControlLógico();
         controlGráfico= new ControlGráfico(controlLógico.getTamaño(),controlLógico.getIntentos());
- 
+        
+        empezarJuego();
+    }
+    
+    private void empezarJuego()
+    {
         combinaciónString = controlLógico.getStringCombinaciónDePrueba();
         combinaciónSecretaString = controlLógico.getStringCombinaciónSecreta();
         combinaciónSecreta = controlGráfico.setColoresCombinación(combinaciónSecretaString);
@@ -47,9 +52,18 @@ public class MastermindGame {
             combinación = controlGráfico.setColoresCombinación(combinaciónString);
             
             controlGráfico.mostrarIntento(controlLógico.getIntentos()-i, controlLógico.getTamaño(), combinación);
-            controlGráfico.mostrarRetroalimentación(controlLógico.getIntentos()-i, controlLógico.getTamaño(), combinaciónSecreta, combinación);
+            controlGráfico.mostrarRetroalimentación(controlLógico.getIntentos()-i, controlLógico.getStringRetroalimentación());
             i++;
         }
+        if(combinaciónString.equals(combinaciónSecretaString))
+            {
+                System.out.printf("COMBINACIÓN ACERTADA EN EL INTENTO %d\n",i-1);
+            } else {
+            System.out.printf("COMBINACIÓN NO ACERTADA.\n");
+        }
         controlGráfico.mostrarCombinaciónSecreta(controlLógico.getTamaño(),combinaciónSecreta);
+        controlLógico.mostrarCombinaciónSecreta();
     }
+    
+    
 }

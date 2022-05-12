@@ -20,7 +20,6 @@ public final class Decodificador {
     {
         combinaciónDePrueba = new ArrayList();
         setDeIntentos = new HashSet();
-        //intentarCombinación(tamaño);
     }
     
     public void intentarCombinación(int tamaño)

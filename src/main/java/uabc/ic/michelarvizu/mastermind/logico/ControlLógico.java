@@ -17,8 +17,6 @@ public class ControlLógico {
     private Tablero tablero;
     private int intentos;
     private int tamaño;
-    private ArrayList <String> combinaciónDePrueba;
-    private ArrayList <String> combinaciónSecreta;
     
     public ControlLógico()
     {
@@ -62,7 +60,7 @@ public class ControlLógico {
     public ArrayList <String> getStringCombinaciónDePrueba()
     {
         ArrayList <Pin> combinaciónPin = new ArrayList();
-        combinaciónDePrueba = new ArrayList();
+        ArrayList <String> combinaciónDePrueba = new ArrayList();
         combinaciónPin = jugador.getCombinaciónDePrueba();
         for(int i=0; i<combinaciónPin.size(); i++)
         {
@@ -77,12 +75,29 @@ public class ControlLógico {
     public ArrayList <String> getStringCombinaciónSecreta()
     {
         ArrayList <Pin> combinaciónPin = new ArrayList();
-        combinaciónSecreta = new ArrayList();
+        ArrayList <String> combinaciónSecreta = new ArrayList();
         combinaciónPin = códigoSecreto.getCombinaciónSecreta();
         for(int i=0; i<combinaciónPin.size(); i++)
         {
             combinaciónSecreta.add(combinaciónPin.get(i).getNombre());
         }
         return combinaciónSecreta;
+    }
+    
+    public void mostrarCombinaciónSecreta()
+    {
+        tablero.mostrarCombinaciónSecreta(códigoSecreto.getCombinaciónSecreta());
+    }
+    
+    public ArrayList <String> getStringRetroalimentación()
+    {
+        ArrayList <Pin> combinaciónPin = new ArrayList();
+        ArrayList <String> retroalimentaciónString = new ArrayList();
+        combinaciónPin = retroalimentación.getRetroalimentación();
+        for(int i=0; i<combinaciónPin.size(); i++)
+        {
+            retroalimentaciónString.add(combinaciónPin.get(i).getNombre());
+        }
+        return retroalimentaciónString;
     }
 }

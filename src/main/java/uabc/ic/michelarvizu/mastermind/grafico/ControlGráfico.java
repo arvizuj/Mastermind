@@ -65,20 +65,17 @@ public class ControlGráfico {
     /**
      * Muestra gráficamente en el tablero la retroalimentación correspondiente al intento hecho.
      */
-    public void mostrarRetroalimentación(int intento, int tamaño, ArrayList <Color> coloresSecretos, ArrayList <Color> coloresPrueba)
+    public void mostrarRetroalimentación(int intento, ArrayList <String> retroalimentación)
     {
-        for(int i=0; i<tamaño; i++)
+        for(int i=0; i<retroalimentación.size(); i++)
         {
-            for(int j=0; j<tamaño; j++)
+            if(retroalimentación.get(i).equals("NE"))  
             {
-                if(coloresSecretos.get(i).equals(coloresPrueba.get(i)))
+                tableroGráfico.setColoresRetroalimentación(intento,i,Color.BLACK);
+            } else {
+                if(retroalimentación.get(i).equals("BL"))
                 {
-                    tableroGráfico.setColoresRetroalimentación(intento,i,Color.BLACK);
-                } else {
-                    if(coloresSecretos.get(i).equals(coloresPrueba.get(j)) && j!=i)
-                    {
-                        tableroGráfico.setColoresRetroalimentación(intento,i,Color.WHITE);
-                    }
+                    tableroGráfico.setColoresRetroalimentación(intento,i,Color.WHITE);
                 }
             }
         }

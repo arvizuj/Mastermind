@@ -5,6 +5,7 @@
 package uabc.ic.michelarvizu.mastermind.logico;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -27,28 +28,32 @@ public class Retroalimentación {
         {
             for(int i=0; i<códigoSecreto.size(); i++)
             {
-               if(códigoSecreto.get(i).getNombre().equals(combinaciónDePrueba.get(j).getNombre()) && i==j)
+               if(códigoSecreto.get(j).getNombre().equals(combinaciónDePrueba.get(i).getNombre()) && j==i)
                {
                    pinesRetroalimentación.add(new Pin("NE"));
-                   //System.out.printf("%s ",pinesRetroalimentación.get(i).getNombre());
                } else {
-                   if(códigoSecreto.get(i).equals(combinaciónDePrueba.get(j)) && i!=j)
+                   if(códigoSecreto.get(j).getNombre().equals(combinaciónDePrueba.get(i).getNombre()) && j!=i)
                    {
                        pinesRetroalimentación.add(new Pin("BL"));
-                      // System.out.printf("%s ",pinesRetroalimentación.get(i).getNombre());
                    }
                }
             } 
         }
+        Collections.shuffle(pinesRetroalimentación);
     }
     
     public void mostrarRetroalimentación()
     {
-        System.out.println("RETROALIMENTACIÓN");
+        System.out.println("RETROALIMENTACIÓN:");
         for(int i=0; i<pinesRetroalimentación.size(); i++)
         {
             System.out.printf("%s ",pinesRetroalimentación.get(i).getNombre());
         }
         System.out.printf("\n\n");
+    }
+    
+    public ArrayList <Pin> getRetroalimentación()
+    {
+        return pinesRetroalimentación;
     }
 }

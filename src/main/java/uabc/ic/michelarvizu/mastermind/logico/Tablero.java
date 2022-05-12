@@ -35,7 +35,6 @@ public class Tablero {
             scan = new Scanner(System.in);
             cantidadDeColores = scan.nextInt(); 
         }
-        
     }
     
     private void ingresarCantidadDeIntentos()
@@ -58,6 +57,16 @@ public class Tablero {
         for(int i=0; i<combinaciónDePrueba.size(); i++)
         {
             System.out.printf("%s ", combinaciónDePrueba.get(i).getNombre());
+        }
+        System.out.printf("\n");
+    }
+    
+    public void mostrarCombinaciónSecreta(ArrayList <Pin> combinaciónSecreta)
+    {
+        System.out.printf("COMBINACIÓN SECRETA: \n");
+        for(int i=0; i<combinaciónSecreta.size(); i++)
+        {
+            System.out.printf("%s ", combinaciónSecreta.get(i).getNombre());
         }
         System.out.printf("\n");
     }
