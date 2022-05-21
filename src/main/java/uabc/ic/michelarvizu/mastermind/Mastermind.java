@@ -5,7 +5,7 @@
 
 package uabc.ic.michelarvizu.mastermind;
 
-
+//crear método para la puntuación
 /**
  *
  * @author arviz
@@ -13,6 +13,10 @@ package uabc.ic.michelarvizu.mastermind;
 public class Mastermind {
     private static MastermindGame control;
     
+    /**
+     * Constructor de la clase principal Mastermind.
+     * Su único atributo es la clase MastermindGame que lleva el control total del juego.
+     */
     public static void main(String[] args) 
     {
         control = new MastermindGame();

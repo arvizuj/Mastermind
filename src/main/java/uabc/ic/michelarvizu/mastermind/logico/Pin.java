@@ -4,6 +4,8 @@
  */
 package uabc.ic.michelarvizu.mastermind.logico;
 
+import java.util.Objects;
+
 /**
  *
  * @author arviz
@@ -21,9 +23,17 @@ public class Pin {
         return nombre;
     }
     
+    /**
+     * Compara este pin con el pin de argumento. 
+     * Retorna true si los pines son iguales y false si los pines no son iguales.
+     */
     public boolean esIgual(Pin otroPin)
     {
         return getNombre().equals(otroPin.getNombre());
     }
-    
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }

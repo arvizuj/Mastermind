@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public final class Decodificador {
     private ArrayList <Pin> combinaciónDePrueba;
-    private HashSet <Intento> setDeIntentos;
+    private HashSet <String> setDeIntentos;
     
     public Decodificador(int tamaño)
     {
@@ -22,9 +22,29 @@ public final class Decodificador {
         setDeIntentos = new HashSet();
     }
     
+    /**
+     * Permite ingresar una nueva combinación de colores con el método ingresarCombinación
+     * y la evalúa para saber si ya se ingresó antes.
+     */
     public void intentarCombinación(int tamaño)
     {
-        combinaciónDePrueba.removeAll(combinaciónDePrueba);
+        ingresarColores(tamaño);
+        boolean guardado = validarIntento(combinaciónDePrueba); 
+        
+        while(!guardado)
+        {
+            System.out.printf("La combinación ya fue ingresada.\n\n");
+            ingresarColores(tamaño);
+            guardado = validarIntento(combinaciónDePrueba);
+        }
+    }
+    
+    /**
+     * Permite ingresar una combinación de colores y evalúa que no se repitan dentro de ella.
+     */
+    public void ingresarColores(int tamaño)
+    {
+        combinaciónDePrueba.clear();
         System.out.println("Ingrese una combinación.");
         for(int i=0; i<tamaño; i++)
         {
@@ -42,41 +62,6 @@ public final class Decodificador {
             }
             combinaciónDePrueba.add(pin);
         }
-        while(!guardarIntento(combinaciónDePrueba))
-        {
-            System.out.println("La combinación ya fue ingresada.");
-            System.out.println("Ingrese otra combinación.");
-            for(int i=0; i<tamaño; i++)
-            {
-                Scanner scan = new Scanner(System.in);
-                String nombre = scan.nextLine();
-                Pin pin = new Pin(nombre.toUpperCase());
-                while(!validarColor(pin))
-                {
-                    System.out.println("El color ingresado ya se encuentra en la cobinación.");
-                    System.out.println("Ingrese otro color: ");
-                    nombre = scan.nextLine();
-                    pin = new Pin(nombre.toUpperCase());
-                }
-                combinaciónDePrueba.add(pin);
-            }
-        }
-    }
-    
-    /**
-     * Guarda el intento en el Hashset de intentos (en caso de que no esté repetido).
-     */
-    private boolean guardarIntento(ArrayList <Pin> combinación)
-    {
-        Intento intento = new Intento(combinación);
-        if(validarIntento(intento))
-        {
-            setDeIntentos.add(intento);
-            return true;
-        } else {
-            System.out.println("La combinación ingresada ya se intentó.");
-            return false;
-        }
     }
 
     public ArrayList <Pin> getCombinaciónDePrueba() 
@@ -85,24 +70,30 @@ public final class Decodificador {
     }
     
     /**
-     * Busca el intento ingresado en el Hashset de intentos. Retorna false si el intento ya se
-     * encuentra guardado y true de lo contrario.
+     * Busca el identificador de intento ingresado en el HashSet de intentos. Retorna false si el intento ya se
+     * encuentra guardado y true de lo contrario y lo guarda en el HashSet.
      */
-    public boolean validarIntento(Intento intento)
+    public boolean validarIntento(ArrayList <Pin> combinación)
     {
-        for(Intento intentoPasado: setDeIntentos)
+        Intento intento = new Intento(combinación);
+        if(setDeIntentos.contains(intento.getIdentificador()))
         {
-            if(intento.equals(intentoPasado))
-                return false;
+            return false;
+        } else {
+            setDeIntentos.add(intento.getIdentificador());
         }
         return true;
     }
     
+    /**
+     * Busca el pin de argumento en la combinación de prueba. Retorna true si el pin no se encuentra
+     * en la combinación y false si el pin se está repitiendo.
+     */
     public boolean validarColor(Pin colorDePrueba)
     {
         for(Pin color: combinaciónDePrueba)
         {
-            if(color.equals(colorDePrueba))
+            if(color.esIgual(colorDePrueba))
                 return false;
         }
         return true;

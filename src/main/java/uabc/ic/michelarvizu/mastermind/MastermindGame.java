@@ -14,16 +14,22 @@ import uabc.ic.michelarvizu.mastermind.logico.ControlLógico;
  * @author arviz
  */
 public class MastermindGame {
-   //aaaa
+    
     private ControlGráfico controlGráfico;
     private ControlLógico controlLógico;
     private ArrayList <Color> combinación;
     private ArrayList <Color> combinaciónSecreta;
     private ArrayList <String> combinaciónString;
     private ArrayList <String> combinaciónSecretaString;
+    private float puntuación;
     
+    /**
+     * Constructor sin parámetros.
+     * Crea los objetos indicados e inicia el juego.
+     */
     public MastermindGame() 
     {
+        puntuación = 1000;
         combinación = new ArrayList();
         combinaciónSecreta = new ArrayList();
         combinaciónString = new ArrayList();
@@ -34,14 +40,21 @@ public class MastermindGame {
         empezarJuego();
     }
     
+    /**
+     * Método que se encarga de utilizar los métodos de otras clases para realizar el juego.
+     * Lleva el control sobre cuándo se pueden seguir ingresando intentos.
+     */
     private void empezarJuego()
     {
+        int intentos = controlLógico.getIntentos();
+        float puntosMenos = puntuación/intentos;
         combinaciónString = controlLógico.getStringCombinaciónDePrueba();
         combinaciónSecretaString = controlLógico.getStringCombinaciónSecreta();
         combinaciónSecreta = controlGráfico.setColoresCombinación(combinaciónSecretaString);
+        //controlLógico.mostrarCombinaciónSecreta();
         
         int i=1;
-        while(i<=controlLógico.getIntentos() && !combinaciónString.equals(combinaciónSecretaString))
+        while(i<=intentos && !combinaciónString.equals(combinaciónSecretaString))
         {
             combinaciónString.removeAll(combinaciónString);
             combinación.removeAll(combinación);
@@ -51,19 +64,20 @@ public class MastermindGame {
             
             combinación = controlGráfico.setColoresCombinación(combinaciónString);
             
-            controlGráfico.mostrarIntento(controlLógico.getIntentos()-i, controlLógico.getTamaño(), combinación);
+            controlGráfico.mostrarIntento(controlLógico.getIntentos()-i, combinación);
             controlGráfico.mostrarRetroalimentación(controlLógico.getIntentos()-i, controlLógico.getStringRetroalimentación());
+            
             i++;
         }
+        puntuación = puntuación-(puntosMenos*(i-2));
         if(combinaciónString.equals(combinaciónSecretaString))
             {
                 System.out.printf("COMBINACIÓN ACERTADA EN EL INTENTO %d\n",i-1);
+                System.out.printf("Puntuación: %.2f\n", puntuación);
             } else {
             System.out.printf("COMBINACIÓN NO ACERTADA.\n");
         }
-        controlGráfico.mostrarCombinaciónSecreta(controlLógico.getTamaño(),combinaciónSecreta);
+        controlGráfico.mostrarCombinaciónSecreta(combinaciónSecreta);
         controlLógico.mostrarCombinaciónSecreta();
     }
-    
-    
 }

@@ -57,9 +57,9 @@ public class ControlGráfico {
     /**
      * Muestra gráficamente en el tablero el intento correspondiente.
      */
-    public void mostrarIntento(int intento, int tamaño, ArrayList <Color> combinación)
+    public void mostrarIntento(int intento, ArrayList <Color> combinación)
     {
-        tableroGráfico.setColoresDeIntento(tamaño, intento, combinación);
+        tableroGráfico.setColoresDeIntento(intento, combinación);
     }
     
     /**
@@ -84,11 +84,11 @@ public class ControlGráfico {
     /**
      * Muestra gráficamente en el tablero la combinación secreta.
      */
-    public void mostrarCombinaciónSecreta(int tamaño, ArrayList <Color> combinación)
+    public void mostrarCombinaciónSecreta(ArrayList <Color> combinación)
     {
-        for(int i=0; i<tamaño; i++)
+        for(int i=0; i<combinación.size(); i++)
         {
-            tableroGráfico.setColoresDeCombinaciónSecreta(tamaño, combinación);
+            tableroGráfico.setColoresDeCombinaciónSecreta(combinación);
         }
     } 
 }

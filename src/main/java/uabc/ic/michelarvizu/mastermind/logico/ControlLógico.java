@@ -27,6 +27,10 @@ public class ControlLógico {
         códigoSecreto = new CódigoSecreto(tamaño);
     }
     
+    /**
+     * Realiza un intento para adivinar la combinación secreta.
+     * Muestra en el tablero la combinación ingresada y la respectiva retroalimentación en la consola.
+     */
     public void jugar()
     {
         jugador.intentarCombinación(tamaño);
@@ -84,11 +88,17 @@ public class ControlLógico {
         return combinaciónSecreta;
     }
     
+    /**
+     * Muestra la combinación secreta en la consola.
+     */
     public void mostrarCombinaciónSecreta()
     {
         tablero.mostrarCombinaciónSecreta(códigoSecreto.getCombinaciónSecreta());
     }
     
+    /**
+     * Devuelve la cadena de la retroalimentación.
+     */
     public ArrayList <String> getStringRetroalimentación()
     {
         ArrayList <Pin> combinaciónPin = new ArrayList();

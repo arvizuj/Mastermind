@@ -65,5 +65,4 @@ public final class CódigoSecreto {
             System.out.printf("%s ", combinaciónSecreta.get(i).getNombre());
         }
     }
-    
 }

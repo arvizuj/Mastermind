@@ -23,6 +23,9 @@ public class Tablero {
         ingresarCantidadDeIntentos();
     }
     
+    /**
+     * Permite ingresar desde la consola la cantidad de colores a utilizar para la combinación.
+     */
     private void ingresarCantidadDeColores()
     {
         System.out.println("Ingrese la cantidad de colores a utilizar (4 - 6): ");
@@ -37,6 +40,9 @@ public class Tablero {
         }
     }
     
+    /**
+     * Permite ingresar desde la consola la cantidad de intentos para adivinar la combinación secreta.
+     */
     private void ingresarCantidadDeIntentos()
     {
         System.out.println("Ingrese la cantidad de intentos para adivinar (hasta 15): ");
@@ -51,6 +57,9 @@ public class Tablero {
         }
     }
     
+    /**
+     * Muestra el intento ingresado en la consola en forma de cadena.
+     */
     public void mostrarIntento(ArrayList <Pin> combinaciónDePrueba)
     {
         System.out.printf("COMBINACIÓN INGRESADA: \n");
@@ -61,6 +70,9 @@ public class Tablero {
         System.out.printf("\n");
     }
     
+    /**
+     * Muestra la combinación secreta en la consola en forma de cadena.
+     */
     public void mostrarCombinaciónSecreta(ArrayList <Pin> combinaciónSecreta)
     {
         System.out.printf("COMBINACIÓN SECRETA: \n");
@@ -78,6 +90,5 @@ public class Tablero {
     public int getCantidadDeIntentos() {
         return cantidadDeIntentos;
     }
-    
-    
+     
 }
